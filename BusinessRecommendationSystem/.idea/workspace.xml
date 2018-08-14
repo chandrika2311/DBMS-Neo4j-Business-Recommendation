@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c86abc91-b9ac-436b-8876-23465cff3d60" name="Default Changelist" comment="" />
+    <list default="true" id="c86abc91-b9ac-436b-8876-23465cff3d60" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Data/category.csv.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/friends.csv.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/user_reviews_v1.csv.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/yelp_business_v1.csv.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recommendation_System.py" beforeDir="false" afterPath="$PROJECT_DIR$/Recommendation_System.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yelp_Business.py" beforeDir="false" afterPath="$PROJECT_DIR$/Yelp_Business.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,17 +48,45 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1160002612">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="8396" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="8396" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Yelp_User.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+            <state relative-caret-position="45">
+              <caret line="3" column="22" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="22" />
               <folding>
                 <marker date="1534102816845" expanded="true" signature="16:21" ph="..." />
-                <marker date="1534102816845" expanded="true" signature="765:769" ph="..." />
               </folding>
             </state>
           </provider>
@@ -59,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Yelp_Business.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="37" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="10" selection-end-column="37" />
+            <state relative-caret-position="262">
+              <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -68,15 +104,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Recommendation_System.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="221" selection-start-line="221" selection-end-line="221" />
+            <state relative-caret-position="268">
+              <caret line="638" column="90" selection-start-line="638" selection-start-column="90" selection-end-line="638" selection-end-column="90" />
               <folding>
-                <element signature="e#27#64#0" expanded="true" />
-                <marker date="1534197942908" expanded="true" signature="453:3421" ph="..." />
-                <marker date="1534197942908" expanded="true" signature="1322:1567" ph="..." />
-                <marker date="1534197942908" expanded="true" signature="7443:7800" ph="..." />
-                <marker date="1534197942908" expanded="true" signature="7894:7903" ph="..." />
+                <element signature="e#0#37#0" expanded="true" />
+                <marker date="1534290937906" expanded="true" signature="2408:2414" ph="..." />
+                <marker date="1534290937906" expanded="true" signature="15253:15262" ph="..." />
+                <marker date="1534290937906" expanded="true" signature="17590:17746" ph="..." />
+                <marker date="1534290937906" expanded="true" signature="19939:20225" ph="..." />
+                <marker date="1534290937906" expanded="true" signature="22062:22360" ph="..." />
+                <marker date="1534290937906" expanded="true" signature="34668:34677" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/PycharmProjects/BusinessRecommendationSystem/venv/lib/python2.7/site-packages/py2neo/core.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="99">
+              <caret line="1457" selection-start-line="1457" selection-end-line="1457" />
             </state>
           </provider>
         </entry>
@@ -90,13 +137,26 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>create_one_user</find>
+      <find>stars</find>
+      <find>friends</find>
+      <find>average</find>
+      <find>business_timeline</find>
+      <find>print</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Yelp_User_Business_Category.py" />
-        <option value="$PROJECT_DIR$/Yelp_Business.py" />
         <option value="$PROJECT_DIR$/recommendation_System.py" />
         <option value="$PROJECT_DIR$/Yelp_User.py" />
+        <option value="$PROJECT_DIR$/Yelp_Business.py" />
         <option value="$PROJECT_DIR$/Recommendation_System.py" />
       </list>
     </option>
@@ -104,15 +164,15 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="10" />
     <option name="y" value="43" />
-    <option name="width" value="1260" />
+    <option name="width" value="1268" />
     <option name="height" value="669" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -123,13 +183,23 @@
             <path>
               <item name="BusinessRecommendationSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="BusinessRecommendationSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Data" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -206,22 +276,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="43" width="1260" height="669" extended-state="0" />
+    <frame x="10" y="43" width="1268" height="669" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24939467" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2477947" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" weight="0.32928944" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32928944" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32928944" />
+      <window_info anchor="bottom" id="Run" order="2" weight="1.0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3986135" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32928944" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32928944" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -235,44 +306,50 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Recommendation_System.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="2" />
+          <line>48</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/bin/py2neo">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/bin/py2neo" />
     <entry file="file://$PROJECT_DIR$/Yelp_User.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        <state relative-caret-position="45">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="22" />
           <folding>
             <marker date="1534102816845" expanded="true" signature="16:21" ph="..." />
-            <marker date="1534102816845" expanded="true" signature="765:769" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/BusinessRecommendationSystem/venv/lib/python2.7/site-packages/py2neo/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="1457" selection-start-line="1457" selection-end-line="1457" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Yelp_Business.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="37" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="10" selection-end-column="37" />
+        <state relative-caret-position="262">
+          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Recommendation_System.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="221" selection-start-line="221" selection-end-line="221" />
+        <state relative-caret-position="268">
+          <caret line="638" column="90" selection-start-line="638" selection-start-column="90" selection-end-line="638" selection-end-column="90" />
           <folding>
-            <element signature="e#27#64#0" expanded="true" />
-            <marker date="1534197942908" expanded="true" signature="453:3421" ph="..." />
-            <marker date="1534197942908" expanded="true" signature="1322:1567" ph="..." />
-            <marker date="1534197942908" expanded="true" signature="7443:7800" ph="..." />
-            <marker date="1534197942908" expanded="true" signature="7894:7903" ph="..." />
+            <element signature="e#0#37#0" expanded="true" />
+            <marker date="1534290937906" expanded="true" signature="2408:2414" ph="..." />
+            <marker date="1534290937906" expanded="true" signature="15253:15262" ph="..." />
+            <marker date="1534290937906" expanded="true" signature="17590:17746" ph="..." />
+            <marker date="1534290937906" expanded="true" signature="19939:20225" ph="..." />
+            <marker date="1534290937906" expanded="true" signature="22062:22360" ph="..." />
+            <marker date="1534290937906" expanded="true" signature="34668:34677" ph="..." />
           </folding>
         </state>
       </provider>

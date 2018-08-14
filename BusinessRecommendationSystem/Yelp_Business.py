@@ -1,5 +1,5 @@
 class Yelp_Business:
-    def __init__(self,business_id,business_name,category,longitude,latitude,address,city,state,postal_code):
+    def __init__(self,business_id,business_name,category,longitude,latitude,address,city,state,postal_code,Average_stars):
         self.business_id = business_id
         self.business_name = business_name
         self.category=category
@@ -9,6 +9,7 @@ class Yelp_Business:
         self.city = city
         self.state = state
         self.postal_code = postal_code
+        self.Average_stars = Average_stars
     def get_business_id(self):
         return self.business_id
 
@@ -17,6 +18,9 @@ class Yelp_Business:
 
     def get_business_category(self):
         return self.category
+
+    def get_Average_stars(self):
+        return self.Average_stars
 
     def get_business_address(self):
         add = self.address + ", " + self.city + ", " + self.state + ", " + self.postal_code
