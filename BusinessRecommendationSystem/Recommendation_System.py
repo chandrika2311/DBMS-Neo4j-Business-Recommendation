@@ -630,9 +630,11 @@ class Recommendation_System:
 
     # ----------------------------------------------------------------------------------------------------------------------
     # Method takes input user id and outputs the recommended businesses for the Yelp user based on:
-    # 1. Collaborative filtering
-    # 2. Context based Recommendation
-    # 3. Friends also liked
+    # 1. Collaborative Filtering Recommendations
+    # 2. Collaborative Filtering Friendship Based Recommendations
+    # 3. Collaborative Filtering Step 1 Based Recommendations
+    # 4. Collaborative Filtering Step 2 Based Recommendations
+    # 5. Collaborative Filtering Step 3 Based Recommendations
 
     def user_timelime(self,user_id):
 
