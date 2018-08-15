@@ -4,7 +4,11 @@ import csv
 from Yelp_User import Yelp_User
 from Yelp_Business import Yelp_Business
 import datetime
-
+# this python script researches various types of recommendations and Natural language processing that can be
+# performed in Graph Db using cypher query language. context based filtering, collaborative filtering are deeply
+# analysed. collaborative filtering is done through calculation of cosine similarity between two users.
+# NLP sentiment analysis is performed using the APOC procedures and Graph Aware's NLP procedures plugins which are
+# manually inserted into the database.
 
 
 
@@ -434,38 +438,13 @@ class Recommendation_System:
 
     # ------------------------------------------------------------------------------------------------------------------
 
-    def get_basic_recommendation_user_collaborative(self,user_id):
-        query = "MATCH(a:Yelp_User{user_id:'"+user_id+"'})-[:Reviewed_Business]->(b:Yelp_Business)<-[:Reviewed_Business]-(u:Yelp_User) " \
-                                                       "MATCH(u)-[:Reviewed_Business]->(rec:Yelp_Business) where not exists((a)-[:Reviewed_Business]->(rec)) " \
-                                                       "return rec.business_name;"
-
-        return self.graph.cypher.execute(query)
-
-    # ----------------------------------------------------------------------------------------------------------------------
-
-    def get_recommendation_context_based(self,user_id):
-        graph = Graph(self.url + '/db/data/')
-        query = "MATCH (u:Yelp_User{user_id:'"+user_id+"'})-[rv:Reviewed_Business]->(b:Yelp_Business)-[:IN_CATEGORY]-> "
-        "(c:Yelp_Category)<-[:IN_CATEGORY]-(rec:Yelp_Business) "
-        "WHERE NOT EXISTS ((u)-[:Reviewed_Business]->(rec)) "
-        "WITH rec, [b.business_name,COUNT(*)] AS scores "
-        "RETURN rec.business_name, "
-        "COLLECT(scores) AS scoreComponents, "
-        "REDUCE (s=0,x in COLLECT(scores) | s+x[1]) AS score "
-        "ORDER BY score DESC LIMIT 10;"
-
-        # query1='''MATCH (u:Yelp_User{user_name:"Mark"})-[rv:Reviewed_Business]->(b:Yelp_Business)-[:IN_CATEGORY]->
-        # (c:Yelp_Category)<-[:IN_CATEGORY]-(rec:Yelp_Business)
-        #         RETURN rec;'''
-        return graph.cypher.execute(query)
-
     # ----------------------------------------------------------------------------------------------------------------------
     # This Method enables a user to review a business with comments and stars, When a user reviews a business,
     # a relationship gets created between the user node and business node with "Reviewed Business" relationship name
     # This also leads to creating a ratings star property on the relationship so we know that the user rated with how many stars.
     # Input: Yelp_User ID
     # Function: Relationship gets created between the user and business andstar gets assigned to that relationship
-    # ALso the business re-calculates its average rating since a new rating has been added to it.
+    # Also the business re-calculates its average rating since a new rating has been added to it.
 
     def create_user_reviewed_business(self,user_id,business_id,star):
         query2=" "
@@ -485,6 +464,25 @@ class Recommendation_System:
     # *------------------------------------------------------------------------------------------------------------- * /
     # *------------------------------------------RECOMMENDATION SYSTEM OPERATIONS----------------------------------- * /
     # *------------------------------------------------------------------------------------------------------------- * /
+    # This function takes in the user id of the user and retrieves all the similar businesses that the user is
+    # currently viewing based on the matches in a particular category
+    # Input: user id of the user
+    # Output: recommended business names
+    # Function: this function takes in the user id of the user and retrieves all the similar businesses that the user is
+    #           currently viewing based on the matches in a particular category
+    def get_recommendation_context_based(self, user_id):
+        graph = Graph(self.url + '/db/data/')
+        query = "MATCH (u:Yelp_User{user_id:'" + user_id + "'})-[rv:Reviewed_Business]->(b:Yelp_Business)-[:In_Category]->" \
+                                                           "(c:Yelp_Category)<-[:In_Category]-(rec:Yelp_Business) " \
+                                                           "WHERE NOT EXISTS ((u)-[:Reviewed_Business]->(rec)) " \
+                                                           "WITH rec, [b.business_name,COUNT(*)] AS scores " \
+                                                           "RETURN rec.business_name," \
+                                                           "COLLECT(scores) AS scoreComponents," \
+                                                           "REDUCE (s=0,x in COLLECT(scores) | s+x[1]) AS score " \
+                                                           "ORDER BY score DESC LIMIT 10;"
+
+        return graph.cypher.execute(query)
+
     # Input: user_id of the user
     # Output: recommended business
     # Function:
@@ -508,10 +506,7 @@ class Recommendation_System:
                 " WITH u1, u2,countu, toFloat(count(r))/countb as sim "
                 "MATCH (b:Yelp_Business)<-[r:Reviewed_Business]-(u2) "
                 "WHERE NOT (b)<-[:Reviewed_Business]-(u1) "
-    
                  "RETURN DISTINCT b.business_name, toFloat(count(r))/countu as score,sim ORDER BY score DESC")
-        # print query
-
 
         return (graph.cypher.execute(query))
 
@@ -609,6 +604,12 @@ class Recommendation_System:
             "RETURN result")
         return graph.cypher.execute(query1)
     # ------------------------------------------------------------------------------------------------------------------
+    # This method takes advantage of Friend network of the system:
+    # It recommends to a user based on the businesses reviewed by their friends:
+    # Input: User Id
+    # Output: List of businesses based on friends network
+    # function: Friend's based recommendations
+
     def collaborative_filtering_friends_based(self,user_id):
         graph = Graph(self.url + '/db/data/')
         query="MATCH(a:Yelp_User{user_id:'"+user_id+"'})-[:Friends_With]->(b:Yelp_User) " \
@@ -658,7 +659,6 @@ class Recommendation_System:
         except:
             print" No Collaborative Filtering Step 2 Based Recommendations"
 
-
         try:
             recommendation_CF_Step3 = self.collaborative_filtering_step_3(user_id)
             print "Collaborative Filtering Step 3 Based Recommendations :"
@@ -666,6 +666,12 @@ class Recommendation_System:
                 print str(i).split("\n")[2]
         except:
             print 'No Collaborative Filtering Step 3 Based Recommendations'
+        context_based = self.get_recommendation_context_based(user_id)
+        print"Context Based Recommendations:"
+        for i in context_based:
+            print str(i).split("\n")[2].split('|')[0]
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
@@ -699,40 +705,5 @@ if __name__ == "__main__":
             recommend.create_user_reviewed_business(user_id,'n0061DPXoCFMKZPgPZDgVw',5)
             print "Recommendations again:"
             recommend.user_timelime(user_id)
-    # else:
-    #     recommend.create_user_reviewed_business('himi123', 'n0061DPXoCFMKZPgPZDgVw', 5)
 
-
-
-
-
-
-
-    # print"Welcome User:"
-    # user_name = input("Enter your user_name:")
-    # password = input("Enter your password:")
-    #
-    # print("Business Recommendation For you", )
-    #
-    #
-    # print "collaborating filtering"
-    # a = recommend.get_recommendation_user_collaborative()
-    # print a
-    # print "context based"
-    # b=recommend.get_resommendation_context_based()
-
-    # recommend.get_user_reviewed_business("Cathy", "UXPgUZ-3ywG_tNKG41kaag")
-    # print b
-
-
-    # all_users = recommend.get_all_users()
-    # print("List of all users:", all_users)
-
-    # all_businesses = recommend.get_all_business()
-    # print("List Of All Businesses:", len(all_businesses))
-
-    # business_timeline = recommend.business_timeline('0E4GXJs7Ra4oRtv6gQTs0w')
-    # business_name = recommend.get_business_name('0E4GXJs7Ra4oRtv6gQTs0w')
-    # print business_name[0]
-    # print("Business Timeline : "+str(business_timeline))
 

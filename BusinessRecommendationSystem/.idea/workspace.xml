@@ -52,12 +52,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="9923" />
+          <entry key="py" value="10386" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="9923" />
+          <entry key="Python" value="10386" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -98,16 +98,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Recommendation_System.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="634" column="4" selection-start-line="634" selection-start-column="4" selection-end-line="634" selection-end-column="4" />
+            <state relative-caret-position="308">
+              <caret line="461" column="48" lean-forward="true" selection-start-line="461" selection-start-column="48" selection-end-line="461" selection-end-column="48" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
-                <marker date="1534294821291" expanded="true" signature="2425:2431" ph="..." />
-                <marker date="1534294821291" expanded="true" signature="15148:15157" ph="..." />
-                <marker date="1534294821291" expanded="true" signature="17485:17641" ph="..." />
-                <marker date="1534294821291" expanded="true" signature="19834:20120" ph="..." />
-                <marker date="1534294821291" expanded="true" signature="21957:22255" ph="..." />
-                <marker date="1534294821291" expanded="true" signature="35541:35550" ph="..." />
+                <marker date="1534299508997" expanded="true" signature="2904:2910" ph="..." />
+                <marker date="1534299508997" expanded="true" signature="15627:15636" ph="..." />
+                <marker date="1534299508997" expanded="true" signature="17964:18120" ph="..." />
+                <marker date="1534299508997" expanded="true" signature="20313:20599" ph="..." />
+                <marker date="1534299508997" expanded="true" signature="22436:22734" ph="..." />
+                <marker date="1534299508997" expanded="true" signature="36256:36265" ph="..." />
               </folding>
             </state>
           </provider>
@@ -139,6 +139,7 @@
       <find>average</find>
       <find>business_timeline</find>
       <find>print</find>
+      <find>context</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -278,7 +279,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.42114386" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.627383" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3986135" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -300,8 +301,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Recommendation_System.py</url>
-          <line>50</line>
+          <line>54</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Recommendation_System.py</url>
+          <line>670</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -334,16 +340,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Recommendation_System.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="634" column="4" selection-start-line="634" selection-start-column="4" selection-end-line="634" selection-end-column="4" />
+        <state relative-caret-position="308">
+          <caret line="461" column="48" lean-forward="true" selection-start-line="461" selection-start-column="48" selection-end-line="461" selection-end-column="48" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1534294821291" expanded="true" signature="2425:2431" ph="..." />
-            <marker date="1534294821291" expanded="true" signature="15148:15157" ph="..." />
-            <marker date="1534294821291" expanded="true" signature="17485:17641" ph="..." />
-            <marker date="1534294821291" expanded="true" signature="19834:20120" ph="..." />
-            <marker date="1534294821291" expanded="true" signature="21957:22255" ph="..." />
-            <marker date="1534294821291" expanded="true" signature="35541:35550" ph="..." />
+            <marker date="1534299508997" expanded="true" signature="2904:2910" ph="..." />
+            <marker date="1534299508997" expanded="true" signature="15627:15636" ph="..." />
+            <marker date="1534299508997" expanded="true" signature="17964:18120" ph="..." />
+            <marker date="1534299508997" expanded="true" signature="20313:20599" ph="..." />
+            <marker date="1534299508997" expanded="true" signature="22436:22734" ph="..." />
+            <marker date="1534299508997" expanded="true" signature="36256:36265" ph="..." />
           </folding>
         </state>
       </provider>
