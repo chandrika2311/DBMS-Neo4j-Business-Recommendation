@@ -461,6 +461,33 @@ class Recommendation_System:
             "WITH b, avg(toInt(r.ratingstars)) AS avg_rating SET b.avg_rating = avg_rating return b;"
         return self.graph.cypher.execute(query2)
 
+    # *----------------------------------------------------------------------------------------------------------------- * /
+    # *------------------------------------------DELETE OPERATIONS------------------------------------------------------ * /
+    # *----------------------------------------------------------------------------------------------------------------- * /
+
+    # method to delete a user when given a user id
+    def delete_user(self,user_id):
+        query = ("MATCH (u;Yelp_user {user_id:'" + user_id + "'}) DELETE u")
+        return self.graph.cypher.execute(query)
+
+    # method to delete a business when given a business id
+    def delete_business(self,business_id):
+        query = ("MATCH (b:Yelp_Business {business_id:'" + business_id+"'}) DELETE b")
+        return self.graph.cypher.execute(query)
+
+    # method to delete a relationship between a user and a business based on user id and business id
+    def delete_user_business_relation(self,user_id,business_id):
+        query= ("MATCH (u:Yelp_user {user_id:'" + user_id + "'})-[r:Reviewed_Business]->(b:Yelp_Business {business_id:'"
+                                                            +business_id+"'}) DELETE r")
+        return self.graph.cypher.execute(query)
+
+    # method to delete a category
+    def delete_category(self,category_id):
+        query = ("MATCH (c:Category {Category_id:'" + category_id + "'})")
+        return self.graph.cypher.execute(query)
+
+
+
     # *------------------------------------------------------------------------------------------------------------- * /
     # *------------------------------------------RECOMMENDATION SYSTEM OPERATIONS----------------------------------- * /
     # *------------------------------------------------------------------------------------------------------------- * /
