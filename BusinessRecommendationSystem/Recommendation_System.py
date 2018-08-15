@@ -3,6 +3,8 @@ from py2neo import authenticate, Graph
 import csv
 from Yelp_User import Yelp_User
 from Yelp_Business import Yelp_Business
+import datetime
+
 
 
 
@@ -203,9 +205,9 @@ class Recommendation_System:
     # 4. Yelping_since: Year since the user is yelping
     # Output: Graph created with all User as Node with input properties
 
-    def create_one_user(self, user_id, name, yelping_since, review_count):
+    def create_one_user(self, user):
         # Open csv file
-        user = Yelp_User(user_id, name, yelping_since, review_count)# Create Yelp_User Object
+        #
         user_Node = Node("Yelp_User", user_id=user.user_id, user_name=user.user_name,# Create a Yelp_User Node here
                          review_count=user.review_count,
                          yelping_since=user.yelping_since)
@@ -458,17 +460,27 @@ class Recommendation_System:
         return graph.cypher.execute(query)
 
     # ----------------------------------------------------------------------------------------------------------------------
-    def create_user_reviewed_business(self,user_name,business_id,star):
-        query2=" "
-        graph = Graph(self.url + '/db/data/')
-        query="MATCH (a:Yelp_User{user_name:'"+user_name+"'}) MATCH(b:Yelp_Business{business_id:'"+business_id+"'}) " \
-         "MERGE (a)-[r:Reviewed_Business]->(b) ON CREATE SET r.ratingstars = toInt('" + star + "')RETURN r;"
+    # This Method enables a user to review a business with comments and stars, When a user reviews a business,
+    # a relationship gets created between the user node and business node with "Reviewed Business" relationship name
+    # This also leads to creating a ratings star property on the relationship so we know that the user rated with how many stars.
+    # Input: Yelp_User ID
+    # Function: Relationship gets created between the user and business andstar gets assigned to that relationship
+    # ALso the business re-calculates its average rating since a new rating has been added to it.
 
-        business_reviewed = graph.cypher.execute(query)
+    def create_user_reviewed_business(self,user_id,business_id,star):
+        query2=" "
+        # graph = Graph(self.url + '/db/data/')
+        query="MATCH (a:Yelp_User{user_id:'"+user_id+"'}) MATCH(b:Yelp_Business{business_id:'"+business_id+"'}) " \
+         "MERGE (a)-[r:Reviewed_Business]->(b) ON CREATE SET r.ratingstars= '"+str(star)+ "' RETURN r;"
+
+
+        business_reviewed = self.graph.cypher.execute(query)
+        # business re - calculates its average rating since a new rating has been added to it
         if business_reviewed:
+            print("-[:reviewed_business]-> Successfully created")
             query2 = "MATCH(b:Yelp_Business {business_id: '"+business_id+"'}) < -[r:Reviewed_Business]-() " \
-            "WITH b, avg(r.ratingstars) AS avg_rating SET b.avg_rating = avg_rating return b;"
-        return graph.cypher.execute(query2)
+            "WITH b, avg(toInt(r.ratingstars)) AS avg_rating SET b.avg_rating = avg_rating return b;"
+        return self.graph.cypher.execute(query2)
 
     # *------------------------------------------------------------------------------------------------------------- * /
     # *------------------------------------------RECOMMENDATION SYSTEM OPERATIONS----------------------------------- * /
@@ -622,9 +634,36 @@ class Recommendation_System:
     # 2. Context based Recommendation
     # 3. Friends also liked
 
-    def user_timelime(self):
-        print "a"
+    def user_timelime(self,user_id):
 
+        recommendation_CF = self.get_basic_recommendation_user_collaborative(user_id)
+        print "Collaborative Filtering Recommendations:"
+        for i in recommendation_CF:
+            print str(i).split("\n")[2]
+        recommendation_BCBR = self.collaborative_filtering_friends_based(user_id)
+        print "Collaborative Filtering Friendship Based Recommendations:"
+        for i in recommendation_BCBR:
+            print str(i).split("\n")[2]
+        recommendation_CF_Step1 = self.collaborative_filtering_step_1(user_id)
+        print "Collaborative Filtering Step 1 Based Recommendations :"
+        for i in recommendation_CF_Step1:
+            print str(i).split("\n")[2]
+        try:
+            recommendation_CF_Step2 = self.collaborative_filtering_step_2(user_id)
+            print "Collaborative Filtering Step 2 Based Recommendations :"
+            for i in recommendation_CF_Step2:
+                print str(i).split("\n")[2].split('|')
+        except:
+            print" No Collaborative Filtering Step 2 Based Recommendations"
+
+
+        try:
+            recommendation_CF_Step3 = self.collaborative_filtering_step_3(user_id)
+            print "Collaborative Filtering Step 3 Based Recommendations :"
+            for i in recommendation_CF_Step3:
+                print str(i).split("\n")[2]
+        except:
+            print 'No Collaborative Filtering Step 3 Based Recommendations'
 # ----------------------------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
@@ -636,32 +675,30 @@ if __name__ == "__main__":
         user = raw_input("Do you have an already existing account? y/n ")
         if user=='y':
             user_id = raw_input("Please enter your user_id here: ")
-            print ("Welcome Back: ")+ str(recommend.get_one_users(user_id)).split("\n")[2]
+            print ("Welcome Back: ")+ str(recommend.get_one_users(user_id)).split("\n")[2].split('|')[1]
             print(" Here Is Your Timeline: ")
             # TsgBsn19Wjwpyo81gF9_8Q
-            recommendation_CF = recommend.get_basic_recommendation_user_collaborative(user_id)
-            print "Collaborative Filtering Recommendations:"
-            for i in recommendation_CF:
-                print str(i).split("\n")[2]
-            recommendation_BCBR = recommend.collaborative_filtering_friends_based(user_id)
-            print "Collaborative Filtering Friendship Based Recommendations:"
-            for i in recommendation_BCBR:
-                print str(i).split("\n")[2]
-            recommendation_CF_Step1 = recommend.collaborative_filtering_step_1(user_id)
-            print "Collaborative Filtering Step 1 Based Recommendations :"
-            for i in recommendation_CF_Step1:
-                print str(i).split("\n")[2]
+            recommend.user_timelime(user_id)
+        if user=='n':
+            # Asking User to create a new account:
 
-            recommendation_CF_Step2 = recommend.collaborative_filtering_step_2(user_id)
-            print "Collaborative Filtering Step 2 Based Recommendations :"
-            for i in recommendation_CF_Step2:
-                print str(i).split("\n")[2].split('|')
+            user_name = raw_input("Please enter your first name to create new account:")
+            user_password = raw_input("Please enter your password to create new account:")
+            user_id=user_name+'123'
+            yelping_since = now = datetime.datetime.now()
 
-            recommendation_CF_Step3 = recommend.collaborative_filtering_step_3(user_id)
-            print "Collaborative Filtering Step 3 Based Recommendations :"
-            for i in recommendation_CF_Step3:
-                print str(i).split("\n")[2]
+            # Creating new User object to insert into the graph as new Yelp_User Node
+            user_object = Yelp_User(user_id, user_name, yelping_since, 0)  # Create Yelp_User Object
+            recommend.create_one_user(user_object)
 
+            recommend.user_timelime(user_id)
+
+            print("Making the user visit China-Restaurant Wok-House: n0061DPXoCFMKZPgPZDgVw")
+            recommend.create_user_reviewed_business(user_id,'n0061DPXoCFMKZPgPZDgVw',5)
+            print "Recommendations again:"
+            recommend.user_timelime(user_id)
+    # else:
+    #     recommend.create_user_reviewed_business('himi123', 'n0061DPXoCFMKZPgPZDgVw', 5)
 
 
 
